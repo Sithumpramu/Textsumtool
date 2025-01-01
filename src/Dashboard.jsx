@@ -84,7 +84,7 @@ const Dashboard = () => {
         setloading(true)
         seterror("")
         try {
-            const response = await fetch('https://cors-anywhere.herokuapp.com/http://3.25.84.115:8000/summarize', {
+            const response = await fetch('https://13.236.186.213:8000/summarize', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
