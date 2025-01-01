@@ -84,7 +84,7 @@ const Dashboard = () => {
         setloading(true)
         seterror("")
         try {
-            const response = await fetch('http://127.0.0.1:8000/summarize', {
+            const response = await fetch('http://3.25.84.115:8000/summarize', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
