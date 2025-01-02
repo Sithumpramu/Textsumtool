@@ -53,7 +53,7 @@ TextSumm is a text summarization web application that leverages state-of-the-art
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/textsumm.git
+   git clone https://github.com/Sithumpramu/Textsumtool.git
    cd textsumm/backend
    ```
 2. Install dependencies:
