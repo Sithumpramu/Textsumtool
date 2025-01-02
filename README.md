@@ -69,7 +69,7 @@ TextSumm is a text summarization web application that leverages state-of-the-art
    ```
 4. Start the Flask application:
    ```bash
-   fl
+   python app.py
    ```
 5. Deploy to AWS EC2:
    - Set up an EC2 instance and SSH into it.
