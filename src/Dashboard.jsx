@@ -13,6 +13,7 @@ const Dashboard = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
     const [isLogedin, setLogedin] = useState(false);
+    const API_URL = process.env.REACT_APP_API_URL || 'http://54.66.59.103/summarize';
 
 
     const SigninWithGoogle = async () => {
@@ -84,7 +85,7 @@ const Dashboard = () => {
         setloading(true)
         seterror("")
         try {
-            const response = await fetch('http://54.66.59.103/summarize', {
+            const response = await fetch(API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
