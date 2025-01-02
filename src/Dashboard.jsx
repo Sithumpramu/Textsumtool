@@ -39,36 +39,68 @@ const Dashboard = () => {
     }
 
 
+    // const saveSumm = async (text, summary) => {
+    //     if(!isLogedin){
+    //         console.error("user not logged in. can't save data")
+    //         return;
+    //     }
+
+    //     const auth = getAuth();
+    //     const user = auth.currentUser;
+
+    //     if(!user){
+    //         console.error("user is not authenticated. can't save data")
+    //         return;
+    //     }
+
+    //     const sumRef = collection(db, "users", user.uid,"summaries");
+    //     try {
+    //         const q = query(sumRef, orderBy("timestamp", "asc"))
+    //         const querysnapshot = await getDocs(q);
+
+    //         if (querysnapshot.size >= 3) {
+    //             const oldsnap = querysnapshot.docs[0];
+    //             await deleteDoc(doc(db, "users", user.id, "summaries", oldsnap.id))
+    //         }
+    //         await addDoc(sumRef, { text, summary, timestamp: Date.now() })
+    //     }
+    //     catch (error) {
+    //         console.error("error saving to Firestore", error.message)
+    //     }
+
+    // }
+
     const saveSumm = async (text, summary) => {
-        if(!isLogedin){
-            console.error("user not logged in. can't save data")
+        if (!isLogedin) {
+            console.error("User not logged in. Can't save data.");
             return;
         }
-
+    
         const auth = getAuth();
         const user = auth.currentUser;
-
-        if(!user){
-            console.error("user is not authenticated. can't save data")
+    
+        if (!user) {
+            console.error("User is not authenticated. Can't save data.");
             return;
         }
-
-        const sumRef = collection(db, "users", user.uid,"summaries");
+    
         try {
-            const q = query(sumRef, orderBy("timestamp", "asc"))
-            const querysnapshot = await getDocs(q);
-
-            if (querysnapshot.size >= 3) {
-                const oldsnap = querysnapshot.docs[0];
-                await deleteDoc(doc(db, "users", user.id, "summaries", oldsnap.id))
+            const sumRef = collection(db, "users", user.uid, "summaries");
+    
+            const q = query(sumRef, orderBy("timestamp", "asc"));
+            const querySnapshot = await getDocs(q);
+    
+            if (querySnapshot.size >= 3) {
+                const oldestSnapshot = querySnapshot.docs[0];
+                await deleteDoc(doc(db, "users", user.uid, "summaries", oldestSnapshot.id));
             }
-            await addDoc(sumRef, { text, summary, timestamp: Date.now() })
+    
+            await addDoc(sumRef, { text, summary, timestamp: Date.now() });
+        } catch (error) {
+            console.error("Error saving to Firestore:", error.message);
         }
-        catch (error) {
-            console.error("error saving to Firestore", error.message)
-        }
-
-    }
+    };
+    
 
 
 
